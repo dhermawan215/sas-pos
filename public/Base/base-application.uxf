@@ -1,0 +1,56 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>10</x><y>10</y><w>180</w><h>110</h></coordinates><panel_attributes>User
+--
+-laravel auth standar column
+-user_group_ref_id: BigInt
+-is_active: bool
+-google_id:
+-google_ref:
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>210</x><y>10</y><w>270</w><h>180</h></coordinates><panel_attributes>Organization
+--
+-id: BigInt
+-user_ref_id: BigInt
+-name: String Null
+-address: String Null
+-phone: String Null
+-join_date: Date Null,
+-subscription_type: String/Enum Null
+-subscription_periode_start: Timestamp Null
+-subscription_periode_end: Timestamp Null
+-laravel_timestamp:  Timestamp
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>10</y><w>200</w><h>110</h></coordinates><panel_attributes>User Wallet
+--
+-id: BigInt
+-user_ref_id: BigInt
+-current_balance: Double Null
+-transaction_balance: Double Null
+-remaining_balance: Double Null
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>140</y><w>210</w><h>140</h></coordinates><panel_attributes>User Wallet Transaction
+--
+-id: BigInt
+-user_ref_id: BigInt
+-organization_ref_id: BigInt
+-transaction_subject: String Null
+-transaction_date: Date
+-subscription_period_month: Month
+-subsription_period_year: Year 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>210</y><w>170</w><h>120</h></coordinates><panel_attributes>Product
+--
+-id: BigInt
+-organization_ref_id: BigInt
+-product_name: String Null
+-barcode: String Null
+-price: Double Null
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>350</y><w>180</w><h>120</h></coordinates><panel_attributes>Transaction
+--
+-id: BigInt
+-organization_ref_id: BigInt
+-transaction_id: String Null
+-total: double Null
+-transaction_date: Date Null
+-transaction_period: Year Null</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>300</y><w>180</w><h>120</h></coordinates><panel_attributes>Transaction Detail
+--
+-id: BigInt
+-transaction_ref_id: BigInt
+-product_ref_id: BigInt Null
+-qty: Int Null
+-sub_total: Double Null</panel_attributes><additional_attributes></additional_attributes></element></diagram>
