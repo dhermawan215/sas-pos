@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('is_active', [true, false])->nullable()->default(true);
+            $table->bigInteger('user_group_ref_id')->nullable()->default(12);
+            $table->bigInteger('google_id')->nullable();
+            $table->bigInteger('google_ref')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
