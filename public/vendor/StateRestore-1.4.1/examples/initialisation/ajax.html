@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/ico" href="https://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no">
+	<title>StateRestore example - Ajax Loading and Saving</title>
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/demo.css">
+	<style type="text/css" class="init">
+	
+	</style>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
+	<script defer class="init">
+	dt_demo.init({
+		libs: {"targetFramework":"","js":["jquery","datatables","staterestore","buttons","scroller"],"css":["datatables","buttons","staterestore","scroller"],"components":{"datatables":{"css":"..\/..\/..\/..\/css","js":"..\/..\/..\/..\/js","resolve":true},"autofill":{"css":"..\/..\/..\/..\/..\/extensions\/AutoFill\/css","js":"..\/..\/..\/..\/..\/extensions\/AutoFill\/js","resolve":true},"buttons":{"css":"..\/..\/..\/..\/..\/extensions\/Buttons\/css","js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js","resolve":true},"colreorder":{"css":"..\/..\/..\/..\/..\/extensions\/ColReorder\/css","js":"..\/..\/..\/..\/..\/extensions\/ColReorder\/js","resolve":true},"editor":{"css":"..\/..\/..\/..\/..\/extensions\/Editor\/css","js":"..\/..\/..\/..\/..\/extensions\/Editor\/js","resolve":true},"fixedcolumns":{"css":"..\/..\/..\/..\/..\/extensions\/FixedColumns\/css","js":"..\/..\/..\/..\/..\/extensions\/FixedColumns\/js","resolve":true},"fixedheader":{"css":"..\/..\/..\/..\/..\/extensions\/FixedHeader\/css","js":"..\/..\/..\/..\/..\/extensions\/FixedHeader\/js","resolve":true},"keytable":{"css":"..\/..\/..\/..\/..\/extensions\/KeyTable\/css","js":"..\/..\/..\/..\/..\/extensions\/KeyTable\/js","resolve":true},"responsive":{"css":"..\/..\/..\/..\/..\/extensions\/Responsive\/css","js":"..\/..\/..\/..\/..\/extensions\/Responsive\/js","resolve":true},"rowgroup":{"css":"..\/..\/..\/..\/..\/extensions\/RowGroup\/css","js":"..\/..\/..\/..\/..\/extensions\/RowGroup\/js","resolve":true},"rowreorder":{"css":"..\/..\/..\/..\/..\/extensions\/RowReorder\/css","js":"..\/..\/..\/..\/..\/extensions\/RowReorder\/js","resolve":true},"scroller":{"css":"..\/..\/..\/..\/..\/extensions\/Scroller\/css","js":"..\/..\/..\/..\/..\/extensions\/Scroller\/js","resolve":true},"select":{"css":"..\/..\/..\/..\/..\/extensions\/Select\/css","js":"..\/..\/..\/..\/..\/extensions\/Select\/js","resolve":true},"searchbuilder":{"css":"..\/..\/..\/..\/..\/extensions\/SearchBuilder\/css","js":"..\/..\/..\/..\/..\/extensions\/SearchBuilder\/js","resolve":true},"searchpanes":{"css":"..\/..\/..\/..\/..\/extensions\/SearchPanes\/css","js":"..\/..\/..\/..\/..\/extensions\/SearchPanes\/js","resolve":true},"staterestore":{"css":"..\/..\/..\/..\/..\/extensions\/StateRestore\/css","js":"..\/..\/..\/..\/..\/extensions\/StateRestore\/js","resolve":true},"datetime":{"css":"..\/..\/..\/..\/..\/extensions\/DateTime\/css\/dataTables.dateTime.css","js":"..\/..\/..\/..\/..\/extensions\/DateTime\/js\/dataTables.dateTime.js"},"bootstrap":{"css":"https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/css\/bootstrap.min.css","js":"https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/js\/bootstrap.min.js"},"bootstrap4":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/4.5.2\/css\/bootstrap.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/popper.js\/1.14.3\/umd\/popper.min.js|https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/4.5.2\/js\/bootstrap.min.js"},"bootstrap5":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/5.3.0\/css\/bootstrap.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/5.3.0\/js\/bootstrap.bundle.min.js"},"bulma":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/bulma\/0.9.3\/css\/bulma.min.css"},"foundation":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/foundation\/6.4.3\/css\/foundation.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/foundation\/6.4.3\/js\/foundation.min.js"},"jqueryui":{"css":"https:\/\/code.jquery.com\/ui\/1.13.2\/themes\/base\/jquery-ui.css","js":"https:\/\/code.jquery.com\/ui\/1.13.2\/jquery-ui.js"},"material":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/material-components-web\/14.0.0\/material-components-web.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/material-components-web\/14.0.0\/material-components-web.min.js"},"semanticui":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/fomantic-ui\/2.9.2\/semantic.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/fomantic-ui\/2.9.2\/semantic.min.js"},"uikit":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/uikit\/3.0.2\/css\/uikit.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/uikit\/3.0.2\/js\/uikit.min.js"},"tailwindcss":{"css":"","js":"https:\/\/cdn.tailwindcss.com"},"font-awesome":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/font-awesome\/4.7.0\/css\/font-awesome.min.css"},"world-flags-sprite":{"css":"https:\/\/cdn.jsdelivr.net\/gh\/lafeber\/world-flags-sprite\/stylesheets\/flags32-both.css"},"demo":{"css":"..\/..\/..\/..\/examples\/resources\/demo.css","js":"..\/..\/..\/..\/examples\/resources\/demo.js"},"syntax":{"css":"..\/..\/..\/..\/examples\/resources\/syntax\/shCore.css","js":"..\/..\/..\/..\/examples\/resources\/syntax\/shCore.js"},"buttons-html5":{"js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js\/buttons.html5.js"},"buttons-print":{"js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js\/buttons.print.js"},"buttons-colvis":{"js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js\/buttons.colVis.js"},"jquery":{"js":"https:\/\/code.jquery.com\/jquery-3.7.1.js"},"jszip":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/jszip\/3.10.1\/jszip.min.js"},"pdfmake":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/pdfmake\/0.2.7\/pdfmake.min.js"},"vfsfonts":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/pdfmake\/0.2.7\/vfs_fonts.js"},"moment":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/moment.js\/2.29.2\/moment.min.js"},"luxon":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/luxon\/2.3.1\/luxon.min.js"},"sparkline":{"js":"https:\/\/cdn.jsdelivr.net\/gh\/fnando\/sparkline\/dist\/sparkline.js"}}},
+		jquery: function () {
+				
+
+
+$('#example').DataTable({
+	ajax: {
+		url: '../data/stateRestoreLoad.php',
+		dataSrc: 'data'
+	},
+	layout: {
+		topStart: {
+			buttons: [
+				'createState',
+				{
+					extend: 'savedStates',
+					config: {
+						ajax: '../data/stateRestoreSave.php'
+					}
+				}
+			]
+		}
+	},
+	scrollY: 200,
+	scrollCollapse: true
+});
+
+
+
+		},
+		vanilla: function () {
+				
+
+
+new DataTable('#example', {
+	ajax: {
+		url: '../data/stateRestoreLoad.php',
+		dataSrc: 'data'
+	},
+	layout: {
+		topStart: {
+			buttons: [
+				'createState',
+				{
+					extend: 'savedStates',
+					config: {
+						ajax: '../data/stateRestoreSave.php'
+					}
+				}
+			]
+		}
+	},
+	scrollY: 200,
+	scrollCollapse: true
+});
+
+
+
+		}
+	});
+	</script>
+</head>
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>StateRestore example <span>Ajax Loading and Saving</span></h1>
+			<div class="info">
+				<p>This example shows how the StateRestore extension can be operated over ajax.</p>
+				<p>To do this the <code>ajax</code> option of the <a href="//datatables.net/reference/type/stateRestoreConfig"><code class="type" title=
+				"Javascript parameter type">stateRestoreConfig</code></a> configuration object has to be set to a url that will be used when attempting to save the states. States
+				are then loaded again via the tables own ajax url. If there is a <code>stateRestore</code> property in the json that is initially passed then the states present
+				there will be loaded into the table.</p>
+				<p>It is worth noting that we only provide the client side implementation. You will have to write your own server side implementation to save states for longer
+				than the current session.</p>
+				<p>The Scroller extension is also being used here. This is because it is a common use of loading over ajax.</p>
+			</div>
+			<div class="demo-html">
+				<table id="example" class="display nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>First name</th>
+							<th>Last name</th>
+							<th>ZIP / Post code</th>
+							<th>Country</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<ul class="dt-tabs">
+				<li class="active">Javascript</li>
+				<li>HTML</li>
+				<li>CSS</li>
+				<li>Ajax</li>
+				<li>Server-side script</li>
+			</ul>
+			<div class="dt-tabs">
+				<div class="js">
+					<p>The Javascript shown below is used to initialise the table shown in this example:</p>
+					<div id="js-jquery">
+						<code class="multiline language-js">$('#example').DataTable({
+	ajax: {
+		url: '../data/stateRestoreLoad.php',
+		dataSrc: 'data'
+	},
+	layout: {
+		topStart: {
+			buttons: [
+				'createState',
+				{
+					extend: 'savedStates',
+					config: {
+						ajax: '../data/stateRestoreSave.php'
+					}
+				}
+			]
+		}
+	},
+	scrollY: 200,
+	scrollCollapse: true
+});</code>
+					</div>
+					<div id="js-vanilla">
+						<code class="multiline language-js">new DataTable('#example', {
+	ajax: {
+		url: '../data/stateRestoreLoad.php',
+		dataSrc: 'data'
+	},
+	layout: {
+		topStart: {
+			buttons: [
+				'createState',
+				{
+					extend: 'savedStates',
+					config: {
+						ajax: '../data/stateRestoreSave.php'
+					}
+				}
+			]
+		}
+	},
+	scrollY: 200,
+	scrollCollapse: true
+});</code>
+					</div>
+					<p>In addition to the above code, the following Javascript library files are loaded for use in this example:</p>
+					<ul id="js-lib-files"></ul>
+				</div>
+				<div class="table">
+					<p>The HTML shown below is the raw HTML table element, before it has been enhanced by DataTables:</p>
+				</div>
+				<div class="css">
+					<div>
+						<p>This example uses a little bit of additional CSS beyond what is loaded from the library files (below), in order to correctly display the table. The
+						additional CSS used is shown below:</p><code class="multiline language-css"></code>
+					</div>
+					<p>The following CSS library files are loaded for use in this example to provide the styling of the table:</p>
+					<ul id="css-lib-files"></ul>
+				</div>
+				<div class="ajax">
+					<p>This table loads data by Ajax. The latest data that has been loaded is shown below. This data will update automatically as any additional data is
+					loaded.</p>
+				</div>
+				<div class="php">
+					<p>The script used to perform the server-side processing for this table is shown below. Please note that this is just an example script using PHP. Server-side
+					processing scripts can be written in any language, using <a href="//datatables.net/manual/server-side">the protocol described in the DataTables
+					documentation</a>.</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<section>
+		<div class="footer">
+			<div class="gradient"></div>
+			<div class="liner">
+				<h2>Other examples</h2>
+				<div class="toc">
+					<div class="toc-group">
+						<h3><a href="./index.html">Initialisation and options</a></h3>
+						<ul class="toc active">
+							<li>
+								<a href="./simple.html">Basic StateRestore Example</a>
+							</li>
+							<li>
+								<a href="./alternative.html">Alternative UI</a>
+							</li>
+							<li>
+								<a href="./api.html">Basic StateRestore Example - API</a>
+							</li>
+							<li>
+								<a href="./customSplit.html">Custom Split Buttons</a>
+							</li>
+							<li>
+								<a href="./removeAll.html">Remove All Button</a>
+							</li>
+							<li class="active">
+								<a href="./ajax.html">Ajax Loading and Saving</a>
+							</li>
+							<li>
+								<a href="./ajaxFunction.html">Ajax Function</a>
+							</li>
+							<li>
+								<a href="./predefined.html">Predefined States</a>
+							</li>
+							<li>
+								<a href="./predefinedAjax.html">Predefined States from Ajax</a>
+							</li>
+							<li>
+								<a href="./predefinedAjaxNoSave.html">Predefined States - No Save, Remove, Rename or Create</a>
+							</li>
+							<li>
+								<a href="./noCreation.html">No state creation</a>
+							</li>
+							<li>
+								<a href="./noRemoval.html">No state remove</a>
+							</li>
+							<li>
+								<a href="./noRenaming.html">No state renaming</a>
+							</li>
+							<li>
+								<a href="./noSaving.html">No state saving</a>
+							</li>
+							<li>
+								<a href="./noButtons.html">No Buttons</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="../customisation/index.html">Customisation</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../customisation/activeLabel.html">Label to Display Active States</a>
+							</li>
+							<li>
+								<a href="../customisation/creationModal.html">Creation Modal</a>
+							</li>
+							<li>
+								<a href="../customisation/customStateData.html">Custom State Data</a>
+							</li>
+							<li>
+								<a href="../customisation/columns.html">Creation Modal with Toggle for Columns</a>
+							</li>
+							<li>
+								<a href="../customisation/creationModalToggle.html">Creation Modal with Toggle</a>
+							</li>
+							<li>
+								<a href="../customisation/i18n.html">StateRestore Language Options</a>
+							</li>
+							<li>
+								<a href="../customisation/stateCount.html">Custom Button Text</a>
+							</li>
+							<li>
+								<a href="../customisation/noColumnSearch.html">Don't save column searches</a>
+							</li>
+							<li>
+								<a href="../customisation/childRows.html">Child Rows</a>
+							</li>
+							<li>
+								<a href="../customisation/noColumnVisibility.html">Don't save column visibility</a>
+							</li>
+							<li>
+								<a href="../customisation/noOrder.html">Don't save ordering</a>
+							</li>
+							<li>
+								<a href="../customisation/noLength.html">Don't save page length</a>
+							</li>
+							<li>
+								<a href="../customisation/noPaging.html">Don't save paging</a>
+							</li>
+							<li>
+								<a href="../customisation/noScroller.html">Don't save scroller</a>
+							</li>
+							<li>
+								<a href="../customisation/noSearch.html">Don't save search</a>
+							</li>
+							<li>
+								<a href="../customisation/noSearchBuilder.html">Don't save SearchBuilder</a>
+							</li>
+							<li>
+								<a href="../customisation/noSearchPanes.html">Don't save SearchPanes</a>
+							</li>
+							<li>
+								<a href="../customisation/noSelect.html">Don't save Selections</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="../integration/index.html">Integration with other DataTables extensions</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../integration/preDefinedSearchPanes.html">Predefined SearchPanes State</a>
+							</li>
+							<li>
+								<a href="../integration/scroller.html">Scroller Integration</a>
+							</li>
+							<li>
+								<a href="../integration/searchBuilder.html">SearchBuilder Integration</a>
+							</li>
+							<li>
+								<a href="../integration/searchPanes.html">SearchPanes Integration</a>
+							</li>
+							<li>
+								<a href="../integration/select.html">Select Integration</a>
+							</li>
+							<li>
+								<a href="../integration/colReorder.html">ColReorder Integration</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="../styling/index.html">Styling</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../styling/bootstrap3.html">Bootstrap 3</a>
+							</li>
+							<li>
+								<a href="../styling/bootstrap4.html">Bootstrap 4</a>
+							</li>
+							<li>
+								<a href="../styling/bootstrap5.html">Bootstrap 5</a>
+							</li>
+							<li>
+								<a href="../styling/bulma.html">Bulma</a>
+							</li>
+							<li>
+								<a href="../styling/foundation.html">Foundation</a>
+							</li>
+							<li>
+								<a href="../styling/jqueryui.html">JQuery UI</a>
+							</li>
+							<li>
+								<a href="../styling/semanticui.html">Fomantic-UI (formally Semantic-UI) styling</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="epilogue">
+					<p>Please refer to the <a href="https://www.datatables.net">DataTables documentation</a> for full information about its API properties and methods.<br>
+					Additionally, there are a wide range of <a href="https://www.datatables.net/extensions">extensions</a> and <a href=
+					"https://www.datatables.net/plug-ins">plug-ins</a> which extend the capabilities of DataTables.</p>
+					<p class="copyright">DataTables designed and created by <a href="https://www.sprymedia.co.uk">SpryMedia Ltd</a> © 2007-2024<br>
+					DataTables is licensed under the <a href="https://www.datatables.net/mit">MIT license</a>.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
