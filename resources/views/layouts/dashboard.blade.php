@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     @include('includes.style')
     @yield('custom_css')
     <title>POS-ku</title>
@@ -233,10 +233,8 @@
                     <div class="row text-muted">
                         <div class="col-6 text-start">
                             <p class="mb-0">
-                                <a class="text-muted" href="https://adminkit.io/"
-                                    target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted"
-                                    href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin
-                                        Template</strong></a> &copy;
+                                <a class="text-muted text-decoration-none" href="#"><strong>POS-KU &copy; 2024</strong></a> - <a class="text-muted text-decoration-none"
+                                    href="#"><strong>Supported by: Adminkit free template</strong></a>
                             </p>
                         </div>
                         <div class="col-6 text-end">

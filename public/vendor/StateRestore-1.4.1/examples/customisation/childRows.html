@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/ico" href="https://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no">
+	<title>DataTables example - Child Rows</title>
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/demo.css">
+	<style type="text/css" class="init">
+	
+td.details-control {
+	background: url('../resources/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+tr.shown td.details-control {
+	background: url('../resources/details_close.png') no-repeat center center;
+}
+
+	</style>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
+	<script defer class="init">
+	dt_demo.init({
+		libs: {"targetFramework":"","js":["jquery","datatables","staterestore","buttons"],"css":["datatables","staterestore","buttons"],"components":{"datatables":{"css":"..\/..\/..\/..\/css","js":"..\/..\/..\/..\/js","resolve":true},"autofill":{"css":"..\/..\/..\/..\/..\/extensions\/AutoFill\/css","js":"..\/..\/..\/..\/..\/extensions\/AutoFill\/js","resolve":true},"buttons":{"css":"..\/..\/..\/..\/..\/extensions\/Buttons\/css","js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js","resolve":true},"colreorder":{"css":"..\/..\/..\/..\/..\/extensions\/ColReorder\/css","js":"..\/..\/..\/..\/..\/extensions\/ColReorder\/js","resolve":true},"editor":{"css":"..\/..\/..\/..\/..\/extensions\/Editor\/css","js":"..\/..\/..\/..\/..\/extensions\/Editor\/js","resolve":true},"fixedcolumns":{"css":"..\/..\/..\/..\/..\/extensions\/FixedColumns\/css","js":"..\/..\/..\/..\/..\/extensions\/FixedColumns\/js","resolve":true},"fixedheader":{"css":"..\/..\/..\/..\/..\/extensions\/FixedHeader\/css","js":"..\/..\/..\/..\/..\/extensions\/FixedHeader\/js","resolve":true},"keytable":{"css":"..\/..\/..\/..\/..\/extensions\/KeyTable\/css","js":"..\/..\/..\/..\/..\/extensions\/KeyTable\/js","resolve":true},"responsive":{"css":"..\/..\/..\/..\/..\/extensions\/Responsive\/css","js":"..\/..\/..\/..\/..\/extensions\/Responsive\/js","resolve":true},"rowgroup":{"css":"..\/..\/..\/..\/..\/extensions\/RowGroup\/css","js":"..\/..\/..\/..\/..\/extensions\/RowGroup\/js","resolve":true},"rowreorder":{"css":"..\/..\/..\/..\/..\/extensions\/RowReorder\/css","js":"..\/..\/..\/..\/..\/extensions\/RowReorder\/js","resolve":true},"scroller":{"css":"..\/..\/..\/..\/..\/extensions\/Scroller\/css","js":"..\/..\/..\/..\/..\/extensions\/Scroller\/js","resolve":true},"select":{"css":"..\/..\/..\/..\/..\/extensions\/Select\/css","js":"..\/..\/..\/..\/..\/extensions\/Select\/js","resolve":true},"searchbuilder":{"css":"..\/..\/..\/..\/..\/extensions\/SearchBuilder\/css","js":"..\/..\/..\/..\/..\/extensions\/SearchBuilder\/js","resolve":true},"searchpanes":{"css":"..\/..\/..\/..\/..\/extensions\/SearchPanes\/css","js":"..\/..\/..\/..\/..\/extensions\/SearchPanes\/js","resolve":true},"staterestore":{"css":"..\/..\/..\/..\/..\/extensions\/StateRestore\/css","js":"..\/..\/..\/..\/..\/extensions\/StateRestore\/js","resolve":true},"datetime":{"css":"..\/..\/..\/..\/..\/extensions\/DateTime\/css\/dataTables.dateTime.css","js":"..\/..\/..\/..\/..\/extensions\/DateTime\/js\/dataTables.dateTime.js"},"bootstrap":{"css":"https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/css\/bootstrap.min.css","js":"https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/js\/bootstrap.min.js"},"bootstrap4":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/4.5.2\/css\/bootstrap.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/popper.js\/1.14.3\/umd\/popper.min.js|https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/4.5.2\/js\/bootstrap.min.js"},"bootstrap5":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/5.3.0\/css\/bootstrap.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/twitter-bootstrap\/5.3.0\/js\/bootstrap.bundle.min.js"},"bulma":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/bulma\/0.9.3\/css\/bulma.min.css"},"foundation":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/foundation\/6.4.3\/css\/foundation.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/foundation\/6.4.3\/js\/foundation.min.js"},"jqueryui":{"css":"https:\/\/code.jquery.com\/ui\/1.13.2\/themes\/base\/jquery-ui.css","js":"https:\/\/code.jquery.com\/ui\/1.13.2\/jquery-ui.js"},"material":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/material-components-web\/14.0.0\/material-components-web.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/material-components-web\/14.0.0\/material-components-web.min.js"},"semanticui":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/fomantic-ui\/2.9.2\/semantic.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/fomantic-ui\/2.9.2\/semantic.min.js"},"uikit":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/uikit\/3.0.2\/css\/uikit.min.css","js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/uikit\/3.0.2\/js\/uikit.min.js"},"tailwindcss":{"css":"","js":"https:\/\/cdn.tailwindcss.com"},"font-awesome":{"css":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/font-awesome\/4.7.0\/css\/font-awesome.min.css"},"world-flags-sprite":{"css":"https:\/\/cdn.jsdelivr.net\/gh\/lafeber\/world-flags-sprite\/stylesheets\/flags32-both.css"},"demo":{"css":"..\/..\/..\/..\/examples\/resources\/demo.css","js":"..\/..\/..\/..\/examples\/resources\/demo.js"},"syntax":{"css":"..\/..\/..\/..\/examples\/resources\/syntax\/shCore.css","js":"..\/..\/..\/..\/examples\/resources\/syntax\/shCore.js"},"buttons-html5":{"js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js\/buttons.html5.js"},"buttons-print":{"js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js\/buttons.print.js"},"buttons-colvis":{"js":"..\/..\/..\/..\/..\/extensions\/Buttons\/js\/buttons.colVis.js"},"jquery":{"js":"https:\/\/code.jquery.com\/jquery-3.7.1.js"},"jszip":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/jszip\/3.10.1\/jszip.min.js"},"pdfmake":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/pdfmake\/0.2.7\/pdfmake.min.js"},"vfsfonts":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/pdfmake\/0.2.7\/vfs_fonts.js"},"moment":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/moment.js\/2.29.2\/moment.min.js"},"luxon":{"js":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/luxon\/2.3.1\/luxon.min.js"},"sparkline":{"js":"https:\/\/cdn.jsdelivr.net\/gh\/fnando\/sparkline\/dist\/sparkline.js"}}},
+		jquery: function () {
+				
+
+// Formatting function for row details - modify as you need
+function format(d) {
+	// `d` is the original data object for the row
+	return (
+		'<dl>' +
+		'<dt>Full name:</dt>' +
+		'<dd>' +
+		d.name +
+		'</dd>' +
+		'<dt>Extension number:</dt>' +
+		'<dd>' +
+		d.extn +
+		'</dd>' +
+		'<dt>Extra info:</dt>' +
+		'<dd>And any further details here (images etc)...</dd>' +
+		'</dl>'
+	);
+}
+
+var table = $('#example').DataTable({
+	ajax: '../data/objects.txt',
+	columns: [
+		{
+			className: 'dt-control',
+			orderable: false,
+			data: null,
+			defaultContent: ''
+		},
+		{ data: 'name' },
+		{ data: 'position' },
+		{ data: 'office' },
+		{ data: 'salary' }
+	],
+	layout: {
+		topStart: {
+			buttons: ['createState', 'savedStates']
+		}
+	},
+	order: [[1, 'asc']],
+	rowId: 'id'
+});
+
+// State handling for restoring child rows
+table.on('requestChild', function (e, row) {
+	row.child(format(row.data())).show();
+});
+
+// Add event listener for opening and closing details
+table.on('click', 'tbody td.dt-control', function () {
+	var tr = $(this).closest('tr');
+	var row = table.row(tr);
+
+	if (row.child.isShown()) {
+		// This row is already open - close it
+		row.child.hide();
+	}
+	else {
+		// Open this row
+		row.child(format(row.data())).show();
+	}
+});
+
+
+		},
+		vanilla: function () {
+				
+
+// Formatting function for row details - modify as you need
+function format(d) {
+	// `d` is the original data object for the row
+	return (
+		'<dl>' +
+		'<dt>Full name:</dt>' +
+		'<dd>' +
+		d.name +
+		'</dd>' +
+		'<dt>Extension number:</dt>' +
+		'<dd>' +
+		d.extn +
+		'</dd>' +
+		'<dt>Extra info:</dt>' +
+		'<dd>And any further details here (images etc)...</dd>' +
+		'</dl>'
+	);
+}
+
+let table = new DataTable('#example', {
+	ajax: '../data/objects.txt',
+	columns: [
+		{
+			className: 'dt-control',
+			orderable: false,
+			data: null,
+			defaultContent: ''
+		},
+		{ data: 'name' },
+		{ data: 'position' },
+		{ data: 'office' },
+		{ data: 'salary' }
+	],
+	layout: {
+		topStart: {
+			buttons: ['createState', 'savedStates']
+		}
+	},
+	order: [[1, 'asc']],
+	rowId: 'id'
+});
+
+// State handling for restoring child rows
+table.on('requestChild', function (e, row) {
+	row.child(format(row.data())).show();
+});
+
+// Add event listener for opening and closing details
+table.on('click', 'tbody td.dt-control', function (e) {
+	let tr = e.target.closest('tr');
+	let row = table.row(tr);
+
+	if (row.child.isShown()) {
+		// This row is already open - close it
+		row.child.hide();
+	}
+	else {
+		// Open this row
+		row.child(format(row.data())).show();
+	}
+});
+
+
+		}
+	});
+	</script>
+</head>
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>DataTables example <span>Child Rows</span></h1>
+			<div class="info">
+				<p>This example shows how it is possible to integrate child rows with StateRestore by adding a listener for the <a href=
+				"//datatables.net/reference/event/requestChild"><code class="event" title="DataTables event">requestChild</code></a>.</p>
+				<p>The DataTables API has a number of methods for attaching child rows to a row in the DataTable. This can be used to show additional information about a row,
+				useful for cases where you wish to convey more information about a row than there is space for in the host table.</p>
+				<p>Here the <a href="//datatables.net/reference/api/row().child()"><code class="api" title="DataTables API method">row().child()</code></a> api method is used to
+				display each row stored in the state when the <a href="//datatables.net/reference/event/requestChild"><code class="event" title=
+				"DataTables event">requestChild</code></a> event is triggered.</p>
+			</div>
+			<div class="demo-html">
+				<table id="example" class="display" style="width:100%">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Position</th>
+							<th>Office</th>
+							<th>Salary</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Position</th>
+							<th>Office</th>
+							<th>Salary</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<ul class="dt-tabs">
+				<li class="active">Javascript</li>
+				<li>HTML</li>
+				<li>CSS</li>
+				<li>Ajax</li>
+				<li>Server-side script</li>
+			</ul>
+			<div class="dt-tabs">
+				<div class="js">
+					<p>The Javascript shown below is used to initialise the table shown in this example:</p>
+					<div id="js-jquery">
+						<code class="multiline language-js">// Formatting function for row details - modify as you need
+function format(d) {
+	// `d` is the original data object for the row
+	return (
+		'&lt;dl&gt;' +
+		'&lt;dt&gt;Full name:&lt;/dt&gt;' +
+		'&lt;dd&gt;' +
+		d.name +
+		'&lt;/dd&gt;' +
+		'&lt;dt&gt;Extension number:&lt;/dt&gt;' +
+		'&lt;dd&gt;' +
+		d.extn +
+		'&lt;/dd&gt;' +
+		'&lt;dt&gt;Extra info:&lt;/dt&gt;' +
+		'&lt;dd&gt;And any further details here (images etc)...&lt;/dd&gt;' +
+		'&lt;/dl&gt;'
+	);
+}
+
+var table = $('#example').DataTable({
+	ajax: '../data/objects.txt',
+	columns: [
+		{
+			className: 'dt-control',
+			orderable: false,
+			data: null,
+			defaultContent: ''
+		},
+		{ data: 'name' },
+		{ data: 'position' },
+		{ data: 'office' },
+		{ data: 'salary' }
+	],
+	layout: {
+		topStart: {
+			buttons: ['createState', 'savedStates']
+		}
+	},
+	order: [[1, 'asc']],
+	rowId: 'id'
+});
+
+// State handling for restoring child rows
+table.on('requestChild', function (e, row) {
+	row.child(format(row.data())).show();
+});
+
+// Add event listener for opening and closing details
+table.on('click', 'tbody td.dt-control', function () {
+	var tr = $(this).closest('tr');
+	var row = table.row(tr);
+
+	if (row.child.isShown()) {
+		// This row is already open - close it
+		row.child.hide();
+	}
+	else {
+		// Open this row
+		row.child(format(row.data())).show();
+	}
+});</code>
+					</div>
+					<div id="js-vanilla">
+						<code class="multiline language-js">// Formatting function for row details - modify as you need
+function format(d) {
+	// `d` is the original data object for the row
+	return (
+		'&lt;dl&gt;' +
+		'&lt;dt&gt;Full name:&lt;/dt&gt;' +
+		'&lt;dd&gt;' +
+		d.name +
+		'&lt;/dd&gt;' +
+		'&lt;dt&gt;Extension number:&lt;/dt&gt;' +
+		'&lt;dd&gt;' +
+		d.extn +
+		'&lt;/dd&gt;' +
+		'&lt;dt&gt;Extra info:&lt;/dt&gt;' +
+		'&lt;dd&gt;And any further details here (images etc)...&lt;/dd&gt;' +
+		'&lt;/dl&gt;'
+	);
+}
+
+let table = new DataTable('#example', {
+	ajax: '../data/objects.txt',
+	columns: [
+		{
+			className: 'dt-control',
+			orderable: false,
+			data: null,
+			defaultContent: ''
+		},
+		{ data: 'name' },
+		{ data: 'position' },
+		{ data: 'office' },
+		{ data: 'salary' }
+	],
+	layout: {
+		topStart: {
+			buttons: ['createState', 'savedStates']
+		}
+	},
+	order: [[1, 'asc']],
+	rowId: 'id'
+});
+
+// State handling for restoring child rows
+table.on('requestChild', function (e, row) {
+	row.child(format(row.data())).show();
+});
+
+// Add event listener for opening and closing details
+table.on('click', 'tbody td.dt-control', function (e) {
+	let tr = e.target.closest('tr');
+	let row = table.row(tr);
+
+	if (row.child.isShown()) {
+		// This row is already open - close it
+		row.child.hide();
+	}
+	else {
+		// Open this row
+		row.child(format(row.data())).show();
+	}
+});</code>
+					</div>
+					<p>In addition to the above code, the following Javascript library files are loaded for use in this example:</p>
+					<ul id="js-lib-files"></ul>
+				</div>
+				<div class="table">
+					<p>The HTML shown below is the raw HTML table element, before it has been enhanced by DataTables:</p>
+				</div>
+				<div class="css">
+					<div>
+						<p>This example uses a little bit of additional CSS beyond what is loaded from the library files (below), in order to correctly display the table. The
+						additional CSS used is shown below:</p><code class="multiline language-css">td.details-control {
+	background: url('../resources/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+tr.shown td.details-control {
+	background: url('../resources/details_close.png') no-repeat center center;
+}</code>
+					</div>
+					<p>The following CSS library files are loaded for use in this example to provide the styling of the table:</p>
+					<ul id="css-lib-files"></ul>
+				</div>
+				<div class="ajax">
+					<p>This table loads data by Ajax. The latest data that has been loaded is shown below. This data will update automatically as any additional data is
+					loaded.</p>
+				</div>
+				<div class="php">
+					<p>The script used to perform the server-side processing for this table is shown below. Please note that this is just an example script using PHP. Server-side
+					processing scripts can be written in any language, using <a href="//datatables.net/manual/server-side">the protocol described in the DataTables
+					documentation</a>.</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<section>
+		<div class="footer">
+			<div class="gradient"></div>
+			<div class="liner">
+				<h2>Other examples</h2>
+				<div class="toc">
+					<div class="toc-group">
+						<h3><a href="../initialisation/index.html">Initialisation and options</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../initialisation/simple.html">Basic StateRestore Example</a>
+							</li>
+							<li>
+								<a href="../initialisation/alternative.html">Alternative UI</a>
+							</li>
+							<li>
+								<a href="../initialisation/api.html">Basic StateRestore Example - API</a>
+							</li>
+							<li>
+								<a href="../initialisation/customSplit.html">Custom Split Buttons</a>
+							</li>
+							<li>
+								<a href="../initialisation/removeAll.html">Remove All Button</a>
+							</li>
+							<li>
+								<a href="../initialisation/ajax.html">Ajax Loading and Saving</a>
+							</li>
+							<li>
+								<a href="../initialisation/ajaxFunction.html">Ajax Function</a>
+							</li>
+							<li>
+								<a href="../initialisation/predefined.html">Predefined States</a>
+							</li>
+							<li>
+								<a href="../initialisation/predefinedAjax.html">Predefined States from Ajax</a>
+							</li>
+							<li>
+								<a href="../initialisation/predefinedAjaxNoSave.html">Predefined States - No Save, Remove, Rename or Create</a>
+							</li>
+							<li>
+								<a href="../initialisation/noCreation.html">No state creation</a>
+							</li>
+							<li>
+								<a href="../initialisation/noRemoval.html">No state remove</a>
+							</li>
+							<li>
+								<a href="../initialisation/noRenaming.html">No state renaming</a>
+							</li>
+							<li>
+								<a href="../initialisation/noSaving.html">No state saving</a>
+							</li>
+							<li>
+								<a href="../initialisation/noButtons.html">No Buttons</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="./index.html">Customisation</a></h3>
+						<ul class="toc active">
+							<li>
+								<a href="./activeLabel.html">Label to Display Active States</a>
+							</li>
+							<li>
+								<a href="./creationModal.html">Creation Modal</a>
+							</li>
+							<li>
+								<a href="./customStateData.html">Custom State Data</a>
+							</li>
+							<li>
+								<a href="./columns.html">Creation Modal with Toggle for Columns</a>
+							</li>
+							<li>
+								<a href="./creationModalToggle.html">Creation Modal with Toggle</a>
+							</li>
+							<li>
+								<a href="./i18n.html">StateRestore Language Options</a>
+							</li>
+							<li>
+								<a href="./stateCount.html">Custom Button Text</a>
+							</li>
+							<li>
+								<a href="./noColumnSearch.html">Don't save column searches</a>
+							</li>
+							<li class="active">
+								<a href="./childRows.html">Child Rows</a>
+							</li>
+							<li>
+								<a href="./noColumnVisibility.html">Don't save column visibility</a>
+							</li>
+							<li>
+								<a href="./noOrder.html">Don't save ordering</a>
+							</li>
+							<li>
+								<a href="./noLength.html">Don't save page length</a>
+							</li>
+							<li>
+								<a href="./noPaging.html">Don't save paging</a>
+							</li>
+							<li>
+								<a href="./noScroller.html">Don't save scroller</a>
+							</li>
+							<li>
+								<a href="./noSearch.html">Don't save search</a>
+							</li>
+							<li>
+								<a href="./noSearchBuilder.html">Don't save SearchBuilder</a>
+							</li>
+							<li>
+								<a href="./noSearchPanes.html">Don't save SearchPanes</a>
+							</li>
+							<li>
+								<a href="./noSelect.html">Don't save Selections</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="../integration/index.html">Integration with other DataTables extensions</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../integration/preDefinedSearchPanes.html">Predefined SearchPanes State</a>
+							</li>
+							<li>
+								<a href="../integration/scroller.html">Scroller Integration</a>
+							</li>
+							<li>
+								<a href="../integration/searchBuilder.html">SearchBuilder Integration</a>
+							</li>
+							<li>
+								<a href="../integration/searchPanes.html">SearchPanes Integration</a>
+							</li>
+							<li>
+								<a href="../integration/select.html">Select Integration</a>
+							</li>
+							<li>
+								<a href="../integration/colReorder.html">ColReorder Integration</a>
+							</li>
+						</ul>
+					</div>
+					<div class="toc-group">
+						<h3><a href="../styling/index.html">Styling</a></h3>
+						<ul class="toc">
+							<li>
+								<a href="../styling/bootstrap3.html">Bootstrap 3</a>
+							</li>
+							<li>
+								<a href="../styling/bootstrap4.html">Bootstrap 4</a>
+							</li>
+							<li>
+								<a href="../styling/bootstrap5.html">Bootstrap 5</a>
+							</li>
+							<li>
+								<a href="../styling/bulma.html">Bulma</a>
+							</li>
+							<li>
+								<a href="../styling/foundation.html">Foundation</a>
+							</li>
+							<li>
+								<a href="../styling/jqueryui.html">JQuery UI</a>
+							</li>
+							<li>
+								<a href="../styling/semanticui.html">Fomantic-UI (formally Semantic-UI) styling</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="epilogue">
+					<p>Please refer to the <a href="https://www.datatables.net">DataTables documentation</a> for full information about its API properties and methods.<br>
+					Additionally, there are a wide range of <a href="https://www.datatables.net/extensions">extensions</a> and <a href=
+					"https://www.datatables.net/plug-ins">plug-ins</a> which extend the capabilities of DataTables.</p>
+					<p class="copyright">DataTables designed and created by <a href="https://www.sprymedia.co.uk">SpryMedia Ltd</a> © 2007-2024<br>
+					DataTables is licensed under the <a href="https://www.datatables.net/mit">MIT license</a>.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
