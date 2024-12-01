@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserGroupController;
+use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\AuthenticatedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -29,5 +30,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/user-group/edit', 'edit');
         Route::post('/user-group/update', 'update');
         Route::post('/user-group/delete', 'delete');
+    });
+    //user management route
+    Route::controller(UserManagementController::class)->group(function () {
+        Route::get('/user-management', 'index')->name('user_management');
+        Route::post('/user-management/list', 'list');
+        Route::post('/user-management/register', 'registerNewUser');
+        Route::post('/user-management/user-active', 'changeUserActive');
     });
 });
