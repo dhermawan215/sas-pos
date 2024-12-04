@@ -30,6 +30,16 @@ Route::prefix('admin')->group(function () {
         Route::post('/user-group/edit', 'edit');
         Route::post('/user-group/update', 'update');
         Route::post('/user-group/delete', 'delete');
+        
+    });
+    Route::controller(UserGroupController::class)->group(function () {
+        Route::get('/user-group', 'index')->name('user_group');
+        Route::post('/user-group/save', 'store');
+        Route::post('/user-group/list', 'list');
+        Route::post('/user-group/edit', 'edit');
+        Route::post('/user-group/update', 'update');
+        Route::post('/user-group/delete', 'delete');
+        
     });
     //user management route
     Route::controller(UserManagementController::class)->group(function () {
